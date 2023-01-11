@@ -1,0 +1,24 @@
+package com.ramon.attornatus.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ramon.attornatus.model.Pessoa;
+import com.ramon.attornatus.service.PessoaService;
+
+@RestController
+public class PessoaController {
+
+    @Autowired
+    private PessoaService pessoaService;
+    
+    @GetMapping("/pessoas")
+    public List<Pessoa> listaPessoas(){
+        List<Pessoa> pessoas = pessoaService.listarTodas();
+        return pessoas;
+        
+    }
+}
