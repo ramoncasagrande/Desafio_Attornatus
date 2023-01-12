@@ -38,7 +38,6 @@ public class PessoaService {
         if (pessoa.isPresent()){
             pessoa.get().setNome(novaPessoa.getNome());
             pessoa.get().setDataNascimento(novaPessoa.getDataNascimento());
-            pessoa.get().setEndereco(novaPessoa.getEndereco());
             return pessoa.get();
         }
         return null;
