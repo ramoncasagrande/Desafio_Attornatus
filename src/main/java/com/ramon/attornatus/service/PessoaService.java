@@ -21,4 +21,10 @@ public class PessoaService {
                 .stream()
                 .collect(Collectors.toList());
     }
+
+
+    public Pessoa criar(Pessoa pessoa){
+        Pessoa novaPessoa = pessoaRepository.save(pessoa);
+        return novaPessoa;
+    }
 }
