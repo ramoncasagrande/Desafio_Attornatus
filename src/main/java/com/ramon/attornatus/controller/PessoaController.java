@@ -34,4 +34,9 @@ public class PessoaController {
     public Pessoa editaPessoa(@RequestBody Pessoa novaPessoa, @PathVariable Long id){
         return pessoaService.criar(pessoaService.editar(novaPessoa, id));
     }
+
+    @GetMapping("/pessoas/{id}")
+    public Pessoa consultaPessoa(@PathVariable Long id){
+        return pessoaService.buscaPorId(id);
+    }
 }
