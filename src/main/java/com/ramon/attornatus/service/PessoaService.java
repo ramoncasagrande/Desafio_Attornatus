@@ -1,6 +1,7 @@
 package com.ramon.attornatus.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,27 @@ public class PessoaService {
                 .collect(Collectors.toList());
     }
 
-
     public Pessoa criar(Pessoa pessoa){
         Pessoa novaPessoa = pessoaRepository.save(pessoa);
         return novaPessoa;
     }
+
+    public Pessoa buscaPorId(Long id){
+        Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+        return pessoa.get();
+    }
+
+    public Pessoa editar(Pessoa novaPessoa, Long id){
+        Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+        if (pessoa.isPresent()){
+            pessoa.get().setNome(novaPessoa.getNome());
+            pessoa.get().setDataNascimento(novaPessoa.getDataNascimento());
+            pessoa.get().setEndereco(novaPessoa.getEndereco());
+            return pessoa.get();
+        }
+        return null;
+
+
+    }
+
 }
