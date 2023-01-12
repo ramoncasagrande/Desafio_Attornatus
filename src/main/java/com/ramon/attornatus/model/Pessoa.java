@@ -1,5 +1,9 @@
 package com.ramon.attornatus.model;
 
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,14 +17,16 @@ public class Pessoa {
     private Long id;
 
     private String nome;
-    private String dataNascimento;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataNascimento;
 
     private String endereco;
     
     public Pessoa() {
     }
     
-    public Pessoa(Long id, String nome, String dataNascimento, String endereco) {
+    public Pessoa(Long id, String nome, LocalDate dataNascimento, String endereco) {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -43,11 +49,11 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
