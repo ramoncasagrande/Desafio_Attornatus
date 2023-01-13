@@ -1,5 +1,7 @@
 package com.ramon.attornatus.model;
 
+import com.ramon.attornatus.model.dto.EnderecoDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,5 +24,14 @@ public class Endereco {
 
     @ManyToOne
     private Pessoa pessoa;
+
+    public static Endereco converter(EnderecoDto enderecoDto){
+        Endereco endereco = new Endereco();
+        endereco.setLogradouro(enderecoDto.getLogradouro());
+        endereco.setCep(enderecoDto.getCep());
+        endereco.setNumero(enderecoDto.getNumero());
+        endereco.setCidade(enderecoDto.getCidade());
+        return endereco;
+    }
     
 }
