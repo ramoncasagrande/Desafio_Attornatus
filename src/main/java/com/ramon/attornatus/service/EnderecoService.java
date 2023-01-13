@@ -1,6 +1,7 @@
 package com.ramon.attornatus.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class EnderecoService {
         return lista
                 .stream()
                 .collect(Collectors.toList());
+    }
+
+    public Endereco buscaPorId(Long id) {
+        Optional<Endereco> endereco = enderecoRepository.findById(id);
+        return endereco.get();
     }
 }

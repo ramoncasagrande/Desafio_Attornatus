@@ -21,18 +21,18 @@ public class PessoaController {
     
     @GetMapping("/pessoas")
     public List<Pessoa> listaPessoas(){
-        List<Pessoa> pessoas = pessoaService.listarTodas();
+        List<Pessoa> pessoas = pessoaService.listarPessoas();
         return pessoas;
     }
 
     @PostMapping("/pessoas")
     public Pessoa novaPessoa(@RequestBody Pessoa pessoa){
-        return pessoaService.criar(pessoa);
+        return pessoaService.criarPessoa(pessoa);
     }
 
     @PutMapping("/pessoas/{id}")
     public Pessoa editaPessoa(@RequestBody Pessoa novaPessoa, @PathVariable Long id){
-        return pessoaService.criar(pessoaService.editar(novaPessoa, id));
+        return pessoaService.criarPessoa(pessoaService.editarPessoa(id, novaPessoa));
     }
 
     @GetMapping("/pessoas/{id}")
