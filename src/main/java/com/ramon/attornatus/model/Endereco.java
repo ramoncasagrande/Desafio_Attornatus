@@ -17,6 +17,7 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private Boolean enderecoPrincipal;
     private String logradouro;
     private String cep;
     private Integer numero;
@@ -27,6 +28,7 @@ public class Endereco {
 
     public static Endereco converter(EnderecoDto enderecoDto){
         Endereco endereco = new Endereco();
+        endereco.setEnderecoPrincipal(enderecoDto.getEnderecoPrincipal());
         endereco.setLogradouro(enderecoDto.getLogradouro());
         endereco.setCep(enderecoDto.getCep());
         endereco.setNumero(enderecoDto.getNumero());

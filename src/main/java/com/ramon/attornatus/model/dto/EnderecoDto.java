@@ -8,6 +8,7 @@ import lombok.Data;
 public class EnderecoDto {
     
     private Long id;
+    private Boolean enderecoPrincipal = false;
     private String logradouro;
     private String cep;
     private Integer numero;
@@ -17,6 +18,7 @@ public class EnderecoDto {
 public static EnderecoDto converter(Endereco endereco){
     EnderecoDto enderecoDto = new EnderecoDto();
     enderecoDto.setId(endereco.getId());
+    enderecoDto.setEnderecoPrincipal(endereco.getEnderecoPrincipal());
     enderecoDto.setLogradouro(endereco.getLogradouro());
     enderecoDto.setCep(endereco.getCep());
     enderecoDto.setNumero(endereco.getNumero());
