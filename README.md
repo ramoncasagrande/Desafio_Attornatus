@@ -36,7 +36,7 @@ Requisições para a API seguiram os padrões:
 
 + Atributos
     + nome: (string) - nome da pessoa
-    + dataNascimento: (date) - formato yyy-MM-dd
+    + dataNascimento: (date) - formato yyyy-MM-dd
 
 + Conteúdo JSON
 
