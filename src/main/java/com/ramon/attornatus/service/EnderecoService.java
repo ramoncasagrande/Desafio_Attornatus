@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ramon.attornatus.model.Endereco;
+import com.ramon.attornatus.model.Pessoa;
 import com.ramon.attornatus.model.dto.EnderecoDto;
 import com.ramon.attornatus.repositories.EnderecoRepository;
+import com.ramon.attornatus.repositories.PessoaRepository;
 
 @Service
 public class EnderecoService {
@@ -17,21 +19,15 @@ public class EnderecoService {
     @Autowired
     EnderecoRepository enderecoRepository;
 
-    public EnderecoDto adicionaEndereco(EnderecoDto enderecoDto){
-        Endereco endereco = enderecoRepository.save(Endereco.converter(enderecoDto));
-        return EnderecoDto.converter(endereco);
-    }
+    @Autowired
+    PessoaRepository pessoaRepository;
 
-    public List<EnderecoDto> ListarEnderecos(){
-        List<Endereco> enderecos = enderecoRepository.findAll();
+    public List<EnderecoDto> ListarEnderecosPessoa(Long id){
+        Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+        List<Endereco> enderecos = pessoa.get().getEnderecos();
         return enderecos
                 .stream()
                 .map(EnderecoDto::converter)
                 .collect(Collectors.toList());
-    }
-
-    public EnderecoDto buscaPorId(Long id) {
-        Optional<Endereco> endereco = enderecoRepository.findById(id);
-        return EnderecoDto.converter(endereco.get()) ;
     }
 }

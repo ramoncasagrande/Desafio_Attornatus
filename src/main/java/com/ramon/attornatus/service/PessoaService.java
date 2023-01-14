@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ramon.attornatus.model.Endereco;
 import com.ramon.attornatus.model.Pessoa;
-
+import com.ramon.attornatus.model.dto.EnderecoDto;
 import com.ramon.attornatus.model.dto.PessoaDto;
 import com.ramon.attornatus.repositories.PessoaRepository;
 
@@ -20,8 +20,6 @@ public class PessoaService {
 
     @Autowired
     private PessoaRepository pessoaRepository;
-    @Autowired
-    private EnderecoService enderecoService;
 
     public List<PessoaDto> listarPessoas() {
         List<Pessoa> pessoas = pessoaRepository.findAll();
@@ -48,12 +46,11 @@ public class PessoaService {
         pessoaRepository.save(pessoaEditada.get());
         return pessoaEditada.get();
     }
-    
+
     @Transactional
-    public Pessoa AdicionaEnderecoAPessoa(Long pessoaId, Long enderecoId){
+    public Pessoa AdicionaEnderecoAPessoa(Long pessoaId, EnderecoDto enderecoDto){
         Optional<Pessoa> pessoa = pessoaRepository.findById(pessoaId);
-        Endereco endereco = Endereco.converter(enderecoService.buscaPorId(enderecoId));
-        pessoa.get().adicionaEndereco(endereco);
+        pessoa.get().adicionaEndereco(Endereco.converter(enderecoDto));
         return pessoa.get();
     }
 

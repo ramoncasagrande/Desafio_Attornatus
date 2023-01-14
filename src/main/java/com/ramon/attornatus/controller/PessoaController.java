@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ramon.attornatus.model.Pessoa;
+import com.ramon.attornatus.model.dto.EnderecoDto;
 import com.ramon.attornatus.model.dto.PessoaDto;
 import com.ramon.attornatus.service.PessoaService;
 
@@ -44,16 +45,9 @@ public class PessoaController {
         return pessoas;
     }
 
-    @PostMapping("/{pessoaId}/endereco/{enderecoId}")
-    public PessoaDto adicionaEnderecoParaPessoa(@PathVariable Long pessoaId, @PathVariable Long enderecoId){
-        Pessoa pessoa = pessoaService.AdicionaEnderecoAPessoa(pessoaId, enderecoId);
+    @PostMapping("/{pessoaId}/endereco")
+    public PessoaDto criaEnderecoParaPessoa(@PathVariable Long pessoaId, @RequestBody EnderecoDto enderecoDto){
+        Pessoa pessoa = pessoaService.AdicionaEnderecoAPessoa(pessoaId, enderecoDto);
         return PessoaDto.converter(pessoa);
     }
-
-    
-    
-    
-    
-
-    
 }
